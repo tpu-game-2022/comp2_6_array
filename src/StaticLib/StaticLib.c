@@ -27,6 +27,8 @@ void initialize(safe_array* ar, int n)
 // safe_array を解放する
 void release(safe_array* ar)
 {
+	if (ar == NULL) return;// NULLチェック
+
 	free(ar->addr);
 	ar->addr = NULL;// 多重解放の防止
 }
@@ -35,6 +37,18 @@ void release(safe_array* ar)
 void resize(safe_array* ar, int n)
 {
 	// ToOo:配列の要素数を変更しよう！(reallocは禁止)
+	if (ar == NULL) return;// NULLチェック
+
+	int *addr =  (int*)malloc(sizeof(int) * n);
+	if (addr == NULL) return;
+
+	int num = (n < ar->num) ? n : ar->num;
+	memcpy(addr, ar->addr, sizeof(int) * num);
+
+	release(ar);
+
+	ar->addr = addr;
+	ar->num = n;
 }
 
 // safe_array のindex番目の要素にvalを設定する
@@ -42,7 +56,12 @@ void resize(safe_array* ar, int n)
 bool set(const safe_array* ar, int index, int val)
 {
 	// ToOo:配列の要素を変更しよう！
-	return false;
+	if (ar == NULL) return false;// NULLチェック
+	if (index < 0 || ar->num <= index) return false;
+
+	ar->addr[index] = val;
+
+	return true;
 }
 
 // safe_array のindex番目の要素を取得する
@@ -50,12 +69,16 @@ bool set(const safe_array* ar, int index, int val)
 int get(const safe_array* ar, int index)
 {
 	// ToOo:要素を所得して、indexがおかしかったら0を返そう
-	return -1;
+	if (ar == NULL) return false;// NULLチェック
+	if (index < 0 || ar->num <= index) return 0;
+
+	return ar->addr[index];
 }
 
 // int_array の要素数を取得する
 int size(const safe_array* ar)
 {
 	// ToOo: 配列の要素数を返そう
-	return -1;
+	if (ar == NULL) return false;// NULLチェック
+	return ar->num;
 }
