@@ -40,7 +40,8 @@ void resize(safe_array* ar, int n)
 
 	initialize(ar, n);
 
-	if (ar->addr != NULL) {
+	if (ar->addr != NULL)
+	{
 		for (int i = 0; i < length; i++)
 		{
 			ar->addr[i] = before_arr[i];
