@@ -56,6 +56,8 @@ void resize(safe_array* ar, int n)
 	initialize(&*ar, n);
 
 	copyArray(&copy_ar, &*ar, n);
+
+	release(&copy_ar);
 }
 
 // safe_array のindex番目の要素にvalを設定する
