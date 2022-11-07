@@ -34,15 +34,18 @@ void release(safe_array* ar)
 // safe_array の要素数を変更する(以前の値は要素が同じ範囲で残す)
 void resize(safe_array* ar, int n)
 {
-	int num1 = size(ar);
-	int* ar1 = (int*)malloc(sizeof(int) * n);
-	for (int i = 0; i < num1; i++) {
-		ar1[i] = ar->addr[i];
-	}
-	initialize(ar,n);
-	for (int i = 0; i < num1; i++) {
-		if(set(ar,i,ar1[i])==false){
-			break;
+	int array;
+	if (ar->num < n)
+		array = ar->num;
+	else
+		array = n;
+	int* array_a = ar->addr;
+	initialize(ar, n);
+	if (ar->addr != NULL)
+	{
+		for (int i = 0; i < array; i++)
+		{
+			ar->addr[i] = array_a[i];
 		}
 	}
 
@@ -69,9 +72,9 @@ bool set(const safe_array* ar, int index, int val)
 int get(const safe_array* ar, int index)
 {
 	// ToOo:要素を所得して、indexがおかしかったら0を返そう
-	if(index >= 0&&index <ar->mum)
+	if(index >= 0&&index <ar->num)
 	{
-		return ar->abbr[index];
+		return ar->addr[index];
 	}
 	return 0;
 }
