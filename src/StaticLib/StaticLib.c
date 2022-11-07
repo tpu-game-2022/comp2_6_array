@@ -50,6 +50,10 @@ void resize(safe_array* ar, int n)
 	initialize(ar,n);
 	for (int i = 0; i < n; i++)
 	{
+		if (i >= ar->num)
+		{
+			break;
+		}
 		ar->addr[i] = after[i];
 	}
 	
