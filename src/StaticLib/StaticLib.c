@@ -39,9 +39,9 @@ void resize(safe_array* ar, int n)
 	for (int i = 0; i < num1; i++) {
 		ar1[i] = ar->addr[i];
 	}
-	initialize(ar, n);
+	initialize(ar,n);
 	for (int i = 0; i < num1; i++) {
-		if (set(ar, i, ar1[i]) == false) {
+		if(set(ar,i,ar1[i])==false){
 			break;
 		}
 	}
@@ -56,9 +56,9 @@ bool set(const safe_array* ar, int index, int val)
 {
 
 	// ToOo:配列の要素を変更しよう！
-	if (index >= 0 && index < ar->num)
+	if(index >= 0&& index < ar->num)
 	{
-		ar->addr[index] = val;
+		ar->addr[index]=val;
 		return true;
 	}
 	return false;
@@ -69,7 +69,7 @@ bool set(const safe_array* ar, int index, int val)
 int get(const safe_array* ar, int index)
 {
 	// ToOo:要素を所得して、indexがおかしかったら0を返そう
-	if (index >= 0 && index < ar->mum)
+	if(index >= 0&&index <ar->mum)
 	{
 		return ar->abbr[index];
 	}

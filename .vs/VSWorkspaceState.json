@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\src",
+    "\\src\\ConsoleApplication",
+    "\\src\\include",
+    "\\src\\StaticLib",
+    "\\src\\UnitTest"
+  ],
+  "SelectedNode": "\\src\\ConsoleApplication\\ConsoleApplication.cpp",
+  "PreviewInSolutionExplorer": false
+}
