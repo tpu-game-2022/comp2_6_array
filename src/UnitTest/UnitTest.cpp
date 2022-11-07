@@ -121,7 +121,7 @@ namespace UnitTest
 	};
 
 	TEST_CLASS(UnitTestResize)
-	{
+{
 	public:
 
 		TEST_METHOD(要素数1から要素数10にサイズを変更)
