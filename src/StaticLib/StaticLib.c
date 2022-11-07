@@ -46,6 +46,7 @@ void resize(safe_array* ar, int n)
 		after[i] = ar->addr[i];
 		
 	}
+	free(ar->addr);
 	initialize(ar,n);
 	for (int i = 0; i < n; i++)
 	{
