@@ -1,7 +1,5 @@
 ﻿#define WIN32_LEAN_AND_MEAN             // Windows ヘッダーからほとんど使用されていない部分を除外する
 #include "Windows.h"                    // Windows API の機能定義
-
-#include <stdio.h>		//追加
 #include <stdlib.h>		// malloc, free
 #include <stdbool.h>	// bool
 
@@ -36,15 +34,15 @@ void release(safe_array* ar)
 void resize(safe_array* ar, int n)
 {
 	// ToOo:配列の要素数を変更しよう！(reallocは禁止)
-	int set_num;
+	int num;
 
 	if (ar->num > n) 
 	{
-		set_num = n;
+		num = n;
 	}
 	else
 	{
-		set_num = ar->num;
+		num = ar->num;
 	}
 	int* set_array = ar->addr;
 
@@ -52,7 +50,7 @@ void resize(safe_array* ar, int n)
 
 	if (ar->addr != NULL)
 	{
-		for (int i = 0; i < set_num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			ar->addr[i] = set_array[i];
 		}
@@ -67,7 +65,7 @@ bool set(const safe_array* ar, int index, int val)
 {
 	// ToOo:配列の要素を変更しよう！
 
-	if (index <= -1 || ar->num <= index)
+	if (index < 0 || ar->num <= index)
 	{
 		return false;
 	}
@@ -80,7 +78,7 @@ bool set(const safe_array* ar, int index, int val)
 int get(const safe_array* ar, int index)
 {
 	// ToOo:要素を所得して、indexがおかしかったら0を返そう
-	if (index <= -1 || ar->num <= index)
+	if (index < 0 || ar->num <= index)
 	{
 		return 0;
 	}
